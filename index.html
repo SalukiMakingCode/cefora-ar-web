@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+<a-scene>
+    <a-box position="0 2 -5" depth="2" height="4" width="6" color="#FFC65D" src="url(img/1.png)"></a-box>
+    <a-box position="10 2 -5" depth="2" height="4" width="6" color="#FFC65D" src="url(img/2.png)" tooltip="text: Informations sur le bâtiment;"></a-box>
+    <a-box gps-entity-place="latitude: 51.5074; longitude: -0.1278;" depth="2" height="4" width="6" color="#FFC65D" src="url(img/3.jpg)" tooltip="text: Informations sur le bâtiment;"></a-box>
+
+        <a-assets>
+            <a-asset-item  id="model" src="img/tesla/C4.glb"></a-asset-item>
+            <a-asset-item  id="model2" src="img/R2D2.glb"></a-asset-item>
+        </a-assets>
+    <a-entity position="30 2 -5" gltf-model="#model"></a-entity>
+    <a-entity position="50 2 -5" gltf-model="#model2"></a-entity>
+</a-scene>
+</body>
+</html>
