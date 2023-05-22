@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Ma première scène A-Frame</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@60813c0/dist/aframe-physics-system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+</head>
+<body>
+<a-scene physics="debug:true;gravity:-9.8;restitution:0.8;">
+  <!-- Ciel -->
+  <a-sky color="#6EBAA7"></a-sky>
+  <!-- Sol -->
+  <a-grid static-body></a-grid>
+
+  <!-- lumière -->
+  <a-entity
+          light="type:directional; castShadow: true"
+          position="0 10 0"
+  ></a-entity>
+
+  <!-- table -->
+  <a-entity
+          id="table"
+          position="0 .3 -.5"
+          geometry="primitive:box; width:2; height:.6; depth:.6"
+          material="color:gray"
+          shadow="cast:true; recieve:true"
+          static-body
+  >
+  </a-entity>
+
+  <!-- Objets -->
+
+  <a-box
+          id="orange"
+          width="0.1"
+          height="0.1"
+          depth="0.1"
+          color="orange"
+          position="0.5 1 -0.3"
+          dynamic-body
+  ></a-box>
+
+  <a-gltf-model
+          id="mug"
+          src="url(../img/mug.glb)"
+          body="type: dynamic; mass: 5; shape: none;"
+          shape__main="shape: cylinder;
+                       offset:0 .04 0;
+                       radiusTop: .04;
+                       radiusBottom: .04;
+                       height: .1"
+          shape__handle="shape:box;orientation:0 0 0; halfExtents: 0.02 0.035 0.01;offset: 0.05 0.04 0;"
+          position="0 1 -0.3"
+          shadow="cast:true; receive:true"
+  ></a-gltf-model>
+
+  <!-- XR Rig -->
+  <a-entity camera="near:0.01;" position="0 1 0" look-controls></a-entity>
+
+  <a-entity
+          laser-controls="hand: right;"
+          raycaster="objets: .touchable; lineColor:red; far:20;"
+  ></a-entity>
+
+  <a-entity
+          laser-controls="hand: left;"
+          raycaster="objets: .touchable; lineColor:green; far:20;"
+  ></a-entity>
+</a-scene>
+</body>
+</html>
+</html>

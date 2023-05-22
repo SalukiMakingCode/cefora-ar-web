@@ -1,1 +1,1 @@
-CEFORA XR
+<a-box position="14.66457 10.65794 -31.94075" width="100" depth="1" height="7" material="src: [object HTMLImageElement]; repeat: 100 5" geometry=""></a-box>

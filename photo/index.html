@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Visite 360 cepegra</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+</head>
+<body>
+<a-scene>
+    <a-assets>
+        <img id="accueil" src="../img/textures/photo/accueil.jpg" preload="auto">
+        <img id="grandesalle" src="../img/textures/photo/grandesalle.jpg" preload="auto">
+        <img id="cour" src="../img/textures/photo/cour.jpg" preload="auto">
+        <a-mixin
+                id="viewsphere"
+                position="0 0 0"
+                geometry="primitive: sphere; radius:20;"
+                material="shader:flat; src: #accueil; side: back; repeat:-1 1;"
+        ></a-mixin>
+
+        <a-mixin
+                id="marker"
+                position="0 0 10"
+                geometry="primitive: circle; radius:2"
+                material="shader:flat; color:red; opacity:0.5;side:double;"
+                event-set__enter="_event: mouseenter; scale:1.5 1.5 1.5;"
+                event-set__leave="_event: mouseleave; scale:1 1 1;"
+        ></a-mixin>
+    </a-assets>
+
+    <!-- ACCUEIL -->
+    <a-entity id="view_1" mixin="viewsphere" visible="true" material="src: #accueil;">
+        <a-entity position="0 0 0" rotation="5 161.5 0">
+            <a-entity
+                    mixin="marker"
+                    event-set__hideview="_event: mousedown; _target:#view_1; visible:false;"
+                    event-set__showview="_event: mousedown; _target:#view_2; visible:true;"
+            >
+            </a-entity>
+        </a-entity>
+    </a-entity>
+
+    <!-- GRANDE SALLE -->
+    <a-entity id="view_2" mixin="viewsphere" visible="false" material="src: #grandesalle;">
+        <a-entity position="0 0 0" rotation="5 -100 0">
+            <a-entity
+                    mixin="marker"
+                    event-set__hideview="_event: mousedown; _target:#view_2; visible:false;"
+                    event-set__showview="_event: mousedown; _target:#view_1; visible:true;"
+            >
+            </a-entity>
+        </a-entity>
+
+        <a-entity position="0 0 0" rotation="0 69 0">
+            <a-entity
+                    mixin="marker"
+                    event-set__hideview="_event: mousedown; _target:#view_2; visible:false;"
+                    event-set__showview="_event: mousedown; _target:#view_3; visible:true;"
+            >
+            </a-entity>
+        </a-entity>
+    </a-entity>
+
+    <!-- COUR -->
+    <a-entity id="view_3" mixin="viewsphere" visible="false" material="src: #cour;">
+        <a-entity position="0 0 0" rotation="-1.5 63 0">
+            <a-entity
+                    mixin="marker"
+                    event-set__hideview="_event: mousedown; _target:#view_3; visible:false;"
+                    event-set__showview="_event: mousedown; _target:#view_2; visible:true;"
+            >
+            </a-entity>
+        </a-entity>
+    </a-entity>
+
+    <!-- RIG -->
+    <a-entity id="hmd" camera look-controls position="0 0 0">
+        <a-entity cursor="rayOrigin: mouse" raycaster></a-entity>
+    </a-entity>
+</a-scene>
+</body>
+</html>

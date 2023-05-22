@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v$npm_package_version/dist/aframe-physics-system.min.js"></script>
+</head>
+<body>
+<a-scene physics>
+    <a-assets>
+        <img id="wood" src="../img/textures/doom/wood3.png" alt="ground">
+        <img id="ground" src="../img/textures/doom/wood2.png" alt="ground">
+        <img id="sky" src="../img/textures/doom/sky1.png" alt="sky">
+    </a-assets>
+
+    <a-sky src="#sky"></a-sky>
+    <a-grid src="#ground" static-body></a-grid>
+
+    <a-entity
+    light="type:directional; castShadow: true;"
+    position="0 10 0">
+    </a-entity>
+
+    <a-entity
+    id="table"
+    static-body
+    position="0 .3 -5"
+    geometry="primitive:box; width:2; height:.6; color:gray;"
+    material="src:#wood"
+    shadow="cast:true; receive:true;">
+    </a-entity>
+
+    <a-entity body="type:dynamic; mass:5; shape:cylinder; offset: 0 0.4 0; height:0.08; radiusTop:0.04; radiusBottom:0.04;" id="mug" gltf-model="url(../img/mug.glb)" position="0 1 -0.3" shadow="cast:true; receive:true;"></a-entity>
+
+    <a-entity camera="near:0.01;" position="0 1 0" look-controls></a-entity>
+<!--    <a-ocean-->
+<!--      speed="5"-->
+<!--      width="100" depth="100"-->
+<!--    ></a-ocean>-->
+<!--    <a-plane-->
+<!--            position="0 0 0"-->
+<!--            width="100"-->
+<!--            height="100"-->
+<!--            rotation="-90 0 0"-->
+<!--            id="plane"-->
+<!--            material="src:#ground; repeat:50 50;">-->
+<!--    </a-plane>-->
+
+
+</a-scene>
+</body>
+</html>

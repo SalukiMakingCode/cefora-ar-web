@@ -10,21 +10,34 @@
 <body>
 <a-scene>
     <a-assets>
-        <img id="sky" src="../img/textures/sky2.png">
+        <img id="sky" src="../img/textures/sky2.png" alt="sky">
+        <img id="ground" src="../img/textures/doom/wood2.png" alt="ground">
+        <img id="bigWall" src="../img/textures/doom/brik_1.png" alt="bigWall">
+        <img id="wall" src="../img/textures/doom/brik_2.png" alt="wall">
     </a-assets>
+    <a-sky src="#sky"></a-sky>
     <a-plane
             position="0 0 0"
             width="100"
             height="100"
             rotation="-90 0 0"
             id="plane"
-            material="src:url(../img/textures/ground.jpg); repeat:10 10;">
+            material="src:#ground; repeat:50 50;">
     </a-plane>
-    <a-box position="0 0.5 50" width="100" depth="1" height="7" material="src:url(../img/textures/bricks2.jpg);repeat:100 10;"></a-box>
-    <a-box position="0 0.5 -50" width="100" depth="1" height="7" material="src:url(../img/textures/bricks2.jpg);repeat:100 10;"></a-box>
-    <a-box position="50 0.5 0" width="1" depth="100" height="7" material="src:url(../img/textures/bricks2.jpg);repeat:100 10;"></a-box>
-    <a-box position="-50 0.5 0" width="1" depth="100" height="7" material="src:url(../img/textures/bricks2.jpg);repeat:100 10;"></a-box>
-    <a-sky src="#sky"></a-sky>
+
+    <a-box id="wall1" position="0 3 50" width="100" depth="1" height="7" material="src:#bigWall;repeat:100 5;"></a-box>
+    <a-box id="wall2" position="0 3 -50" width="100" depth="1" height="7" material="src:#bigWall;repeat:100 5;"></a-box>
+    <a-box id="wall3" position="50 3 0" width="1" depth="100" height="7" material="src:#bigWall;repeat:100 5;"></a-box>
+    <a-box id="wall4" position="-50 3 0" width="1" depth="100" height="7" material="src:#bigWall;repeat:100 5;"></a-box>
+
+    <a-box position="-43 2 0" width="1" depth="50" height="5" material="src:#wall; repeat:50 5;"></a-box>
+    <a-box position="-43 2 0" width="50" depth="1" height="5" material="src:#wall; repeat:50 5;"></a-box>
+    <a-box position="-20 2 10" width="30" depth="1" height="5" material="src:#wall; repeat:50 5;"></a-box>
+    <a-box position="-5.5 2 0" width="1" depth="20" height="5" material="src:#wall; repeat:50 5;"></a-box>
+    <a-box position="-20 2 20" width="20" depth="1" height="5" material="src:#wall; repeat:50 5;"></a-box>
+
 </a-scene>
+
+<script type="module" src="js/index.js"></script>
 </body>
 </html>
