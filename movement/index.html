@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@60813c0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+</head>
+<body>
+<a-scene>
+    <a-entity
+            position="0 0 0"
+            gltf-model="url(assets/models/level.glb)"
+    ></a-entity>
+    <a-entity
+            visible="true"
+            nav-mesh
+            position="0 0.0005 0"
+            gltf-model="url(assets/models/level-navmesh.glb)"
+    ></a-entity>
+
+    <a-entity
+            geometry="primitive:box; height:1; width:1; depth:1;"
+            material="color:red"
+            position="-3 .5 -3"
+    >
+    </a-entity>
+    <!-- RIG -->
+    <a-entity
+            id="rig"
+            movement-controls="constrainToNavMesh: true"
+            position="3 0 3"
+    >
+        <a-entity camera="near:0.01;" position="0 1 0" look-controls></a-entity>
+        <a-entity
+                hand-controls="hand: right; handModelStyle: lowPoly; color: #ffffff;"
+                grab
+                sphere-collider="objects:[grabbable]; radius:0.08;"
+                static-body="shape: sphere; sphereRadius: 0.06;"
+        ></a-entity>
+        <a-entity
+                hand-controls="hand: left; handModelStyle: lowPoly; color: #ffffff;"
+                grab
+                sphere-collider="objects:[grabbable]; radius:0.08;"
+                static-body="shape: sphere; sphereRadius: 0.06;"
+        ></a-entity>
+    </a-entity>
+</a-scene>
+</body>
+</html>

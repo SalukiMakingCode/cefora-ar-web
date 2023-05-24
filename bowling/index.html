@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Bowling</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@60813c0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+</head>
+<body>
+<a-scene physics="debug:true;gravity:-3.7;restitution:0.3;">
+    <!-- Ciel -->
+    <a-sky color="#6EBAA7"></a-sky>
+    <!-- Sol -->
+    <a-grid static-body></a-grid>
+
+    <!-- lumière -->
+    <a-entity
+            light="type:ambient; castShadow: true"
+            position="0 10 0"
+    ></a-entity>
+
+    <a-plane
+            static-body
+            position="0 0.01 0"
+            color="brown"
+            width="50"
+            height="2"
+            rotation="-90 0 -90"
+    >
+    </a-plane>
+
+    <a-sphere
+            id="bowl"
+            grabbable
+            radius=".2"
+            position="0.2 .3 -0.2"
+            color="orange"
+            dynamic-body="shape:sphere;"
+            shape__main="shape: sphere;
+                   radius:.2;"
+    >
+    </a-sphere>
+
+    <a-cylinder
+            color="blue"
+            position="0 1.1 -20"
+            height="2.4"
+            radius=".25"
+            dynamic-body="shape:cylinder;"
+            shape__main="shape: cylinder;
+        radius:.25;
+        height:2.4;"
+    ></a-cylinder>
+    <a-cylinder
+            color="blue"
+            position=".5 1.1 -21"
+            height="2.4"
+            radius=".25"
+            dynamic-body="shape:cylinder;"
+            shape__main="shape: cylinder;
+        radius:.25;
+        height:2.4;"
+    ></a-cylinder>
+    <a-cylinder
+            color="blue"
+            position="-.5 1.1 -21"
+            height="2.4"
+            radius=".25"
+            dynamic-body="shape:cylinder;"
+            shape__main="shape: cylinder;
+        radius:.25;
+        height:2.4;"
+    ></a-cylinder>
+
+    <!-- XR Rig -->
+    <a-entity camera="near:0.01;" position="0 1 0" look-controls></a-entity>
+    <a-entity
+            laser-controls="hand: right;"
+            hand-controls="hand: right; handModelStyle: lowPoly; color: #ffffff;"
+            grab
+            sphere-collider="objects:[grabbable];"
+            static-body="shape: sphere; sphereRadius: 0.02;"
+            raycaster="lineColor: red; objets: .touchable; far:20;"
+    ></a-entity>
+    <a-entity
+            laser-controls="hand: left;"
+            hand-controls="hand: left; handModelStyle: lowPoly; color: #ffffff;"
+            grab
+            sphere-collider="objects:[grabbable];"
+            static-body="shape: sphere; sphereRadius: 0.02;"
+            raycaster="lineColor: green; objets: .touchable; far:20"
+    ></a-entity>
+</a-scene>
+</body>
+</html>

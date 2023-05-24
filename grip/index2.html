@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html>
 <head>
   <meta charset="UTF-8" />
   <title>Ma première scène A-Frame</title>
@@ -38,16 +36,25 @@
 
   <a-box
           id="orange"
+          grabbable
+          class="touchable"
           width="0.1"
           height="0.1"
           depth="0.1"
           color="orange"
           position="0.5 1 -0.3"
-          dynamic-body
-  ></a-box>
+          dynamic-body="shape:box;"
+          event-set__enter="_event:mouseenter; color:red;"
+          event-set__leave="_event:mouseleave; color:orange;"
+          shape__main="shape: box;
+                       width:0.1;
+                       height:0.1;
+                       depth:0.1;">
+  </a-box>
 
   <a-gltf-model
           id="mug"
+          grabbable
           src="url(../img/mug.glb)"
           body="type: dynamic; mass: 5; shape: none;"
           shape__main="shape: cylinder;
@@ -62,17 +69,23 @@
 
   <!-- XR Rig -->
   <a-entity camera="near:0.01;" position="0 1 0" look-controls></a-entity>
-
   <a-entity
           laser-controls="hand: right;"
-          raycaster="objets: .touchable; lineColor:red; far:20;"
+          hand-controls="hand: right; handModelStyle: lowPoly; color: #ffffff;"
+          grab
+          sphere-collider="objects:[grabbable];"
+          static-body="shape: sphere; sphereRadius: 0.02;"
+          raycaster="lineColor: red; objets: .touchable; far:20;"
   ></a-entity>
-
   <a-entity
           laser-controls="hand: left;"
-          raycaster="objets: .touchable; lineColor:green; far:20;"
+          hand-controls="hand: left; handModelStyle: lowPoly; color: #ffffff;"
+          grab
+          sphere-collider="objects:[grabbable];"
+          static-body="shape: sphere; sphereRadius: 0.02;"
+          raycaster="lineColor: green; objets: .touchable; far:20"
   ></a-entity>
+
 </a-scene>
 </body>
-</html>
 </html>

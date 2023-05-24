@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Static Template</title>
+  <!-- Aframe -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+  <!-- Aframe HTML mesh :: https://github.com/AdaRoseCannon/aframe-htmlmesh -->
+  <script src="https://cdn.jsdelivr.net/gh/AdaRoseCannon/aframe-htmlmesh@v2.0.1/build/aframe-html.min.js"></script>
+
+  <!-- Aframe-environment-component :: https://github.com/supermedium/aframe-environment-component -->
+  <script src="https://cdn.jsdelivr.net/gh/supermedium/aframe-environment-component@ae2249c/dist/aframe-environment-component.min.js"></script>
+  <style>
+    #dom-overlay {
+    }
+
+    #ui {
+      background-color: white;
+      border-radius: 1em;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      width: 500px;
+      height: 500px;
+    }
+
+    button.hover {
+      color: white;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+<a-scene>
+  <a-entity id="evironement" environment="preset: forest"></a-entity>
+
+  <a-entity
+          id="cursor"
+          geometry="primitive:sphere; radius:0.005"
+          material="shader:flat; color:black"
+  ></a-entity>
+
+  <a-entity
+          html="html:#ui; cursor:#cursor"
+          rotation="0 0 0"
+          position="0 1.5 -1"
+          width="1"
+          height="1"
+  ></a-entity>
+
+  <!-- CONTROLLERS -->
+  <!-- left hand -->
+  <a-entity
+          laser-controls="hand: left; defaultModelColor: blue"
+          raycaster="lineColor: blue; lineOpacity: 0.5; objects: .touchable, [html]; far: 20; interval:100;"
+          cursor
+  ></a-entity>
+  <!-- right hand -->
+  <a-entity
+          laser-controls="hand: right; defaultModelColor: red"
+          raycaster="lineColor: red; lineOpacity: 0.5; objects: .touchable, [html]; far: 20; interval:100;"
+          cursor
+  ></a-entity>
+  <!-- mouse (only out of vr) -->
+  <a-entity
+          cursor="rayOrigin:mouse"
+          raycaster="objects: .touchable; interval:1;"
+  ></a-entity>
+</a-scene>
+
+<div id="dom-overlay">
+  <section id="ui">
+    <p>HELLO WORLD</p>
+    <button>CHANGE</button>
+  </section>
+</div>
+
+<script>
+  const environment = document.querySelector("#evironement");
+  const ui = document.querySelector("#ui");
+
+  const Handleclick = (e) => {
+    console.log(e.target);
+    environment.setAttribute("environment", "preset", "moon");
+  };
+
+  ui.addEventListener("click", Handleclick);
+</script>
+</body>
+</html>

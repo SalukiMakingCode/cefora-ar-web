@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@60813c0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jure/aframe-blink-controls@v0.4.3/dist/aframe-blink-controls.min.js"></script>
+</head>
+<body>
+<a-scene>
+    <a-entity
+            class="teleportable"
+            geometry="primitive:plane; width:10; height:10;"
+            material="color:darkblue"
+            rotation="-90 0 0"
+    ></a-entity>
+    <!-- RIG -->
+    <a-entity id="rig" position="0 0 0">
+        <a-entity camera="near:0.01;" position="0 1.75 0" look-controls>
+            <a-cursor
+                    cursor="rayOrigin: mouse"
+                    nav-pointer
+                    raycaster="objects: [nav-mesh]"
+            ></a-cursor>
+
+        </a-entity>
+
+        <a-entity
+                hand-controls="hand: right; handModelStyle: lowPoly; color: #ffffff;"
+                grab
+                sphere-collider="objects:[grabbable]; radius:0.08;"
+                static-body="shape: sphere; sphereRadius: 0.06;"
+        ></a-entity>
+
+        <a-entity
+                laser-controls="hand:right;"
+                raycaster
+                blink-controls="
+            collisionEntities: .teleportable;
+            cameraRig: #rig;
+            teleportOrigin:[camera];
+            curveHitColor: yellow;
+            curveMissColor: white;
+            curveShootingSpeed: 6;
+            hitCylinderColor: yellow;
+            "
+        ></a-entity>
+
+        <a-entity
+                hand-controls="hand: left; handModelStyle: lowPoly; color: #ffffff;"
+                grab
+                sphere-collider="objects:[grabbable]; radius:0.08;"
+                static-body="shape: sphere; sphereRadius: 0.06;"
+        ></a-entity>
+    </a-entity>
+</a-scene>
+</body>
+</html>

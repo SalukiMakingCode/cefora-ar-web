@@ -90,6 +90,17 @@
         <a-entity id="hmd" camera="far:20" look-controls   position="0 0 0">
             <a-entity cursor="rayOrigin: mouse" raycaster="object:[mixin=marker]; far:20;"></a-entity>
         </a-entity>
+
+        <a-entity
+                laser-controls="hand: right;"
+                raycaster="objets: [mixin=marker]; lineColor:red; far:20;"
+        ></a-entity>
+
+        <a-entity
+                laser-controls="hand: left;"
+                raycaster="objets: [mixin=marker]; lineColor:green; far:20;"
+        ></a-entity>
+
     </a-entity>
 </a-scene>
 </body>

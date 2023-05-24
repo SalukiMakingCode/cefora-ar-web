@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <!-- Aframe -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@fb96ab2/dist/aframe-extras.min.js"></script>
+    <!-- Aframe HTML mesh :: https://github.com/AdaRoseCannon/aframe-htmlmesh -->
+    <script src="https://cdn.jsdelivr.net/gh/AdaRoseCannon/aframe-htmlmesh@v2.0.1/build/aframe-html.min.js"></script>
+
+    <!-- Aframe-environment-component :: https://github.com/supermedium/aframe-environment-component -->
+    <script src="https://cdn.jsdelivr.net/gh/supermedium/aframe-environment-component@ae2249c/dist/aframe-environment-component.min.js"></script>
+    <style>
+        #dom-overlay {
+            background-color: white;
+            border-radius: 1em;
+            padding: 1em;
+            display: flex;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<a-scene webxr="overlayElement: #dom-overlay">
+    <a-entity id="evironement" environment="preset: moon"></a-entity>
+</a-scene>
+
+<div id="dom-overlay">
+    <section>
+        <p>HELLO WORLD</p>
+    </section>
+</div>
+</body>
+</html>
